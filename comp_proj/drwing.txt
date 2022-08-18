@@ -1,0 +1,11 @@
+.            start.py
+                /\
+               /  \
+teach_login.py    stud_login.py
+    |         \          |\
+    |          \         | \______
+admin_page.py   \        |        |
+        |       (all_view.py)    (register for event)
+        |       (win_view.py)
+    (edit event)
+    (declare winner)

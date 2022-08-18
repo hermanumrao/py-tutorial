@@ -1,0 +1,5 @@
+event_id,event_name,classes,max_no_stud,ind/grp,date,1st,2nd,3rd,4th
+1,test2,1 2 3 8,23,individual,1/2/3/4/5,w,x,y,z
+12,fin, 1 8,22,individual,1/2/3/4/5,test,,,
+14,lets go, 1 2 3 4 5 6 7 8 9 10 11 12,12,individual,5/5/5/5/5,a,b,c,d
+15,pracs, 1 2 3 7 8 9,12,group,1/2/3/4/5,herman,kshitij,akarsh,no one
