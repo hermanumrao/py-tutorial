@@ -5,6 +5,6 @@ for i in str1:
 	t=i.split()
 	print(t)
 	for x in t:
-		f1.write(x)
+		f1.write((x+'\n'))
 		f1.write(' ')
 	f1.write('\n')

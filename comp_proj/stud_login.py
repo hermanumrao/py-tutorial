@@ -8,7 +8,7 @@ root = Tk()
 root.title("STUDENT Login")
  
 width = 840
-height = 600
+height = 700
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 x = (screen_width/2) - (width/2)
