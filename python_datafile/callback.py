@@ -23,3 +23,16 @@ def msg(x):
 msg3()
 msg(msg3)
 msg(msg2)
+
+
+#/-------------------------------------
+def f(*r):
+	res=r[0]+r[1]+r[2]
+	print(res)
+def f1(*r):
+	res=r[0]*r[1]*r[2]
+	print(res)
+def f2(func,*r):
+	func(*r)
+f2(f1,1,2,3,4,5,6)
+f2(f,1,2,3,4,5,6)
