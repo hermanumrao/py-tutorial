@@ -18,14 +18,14 @@ TableMargin = Frame(view_all, width=500)
 TableMargin.pack(side=TOP)
 scrollbarx = Scrollbar(TableMargin, orient=HORIZONTAL)
 scrollbary = Scrollbar(TableMargin, orient=VERTICAL)
-tree = ttk.Treeview(TableMargin, columns=("event_id","event_name","classes","max_no_stud","ind_grp","date","a1st","a2nd","a3rd","a3rd"), height=400, selectmode="extended", yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
+tree = ttk.Treeview(TableMargin, columns=("event_id","event_name","semester","max_no_stud","ind_grp","date","a1st","a2nd","a3rd","a3rd"), height=400, selectmode="extended", yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
 scrollbary.config(command=tree.yview)
 scrollbary.pack(side=RIGHT, fill=Y)
 scrollbarx.config(command=tree.xview)
 scrollbarx.pack(side=BOTTOM, fill=X)
 tree.heading('event_id', text="event_id", anchor=W)
 tree.heading('event_name', text="event_name", anchor=W)
-tree.heading('classes', text="classes", anchor=W)
+tree.heading('semester', text="semester", anchor=W)
 tree.heading('max_no_stud', text="max_no_stud", anchor=W)
 tree.heading('ind_grp', text="ind/grp", anchor=W)
 tree.heading('date', text="date", anchor=W)
@@ -35,14 +35,14 @@ tree.heading('a3rd', text="3rd", anchor=W)
 tree.heading('a3rd', text="4th", anchor=W)
 
 tree.column('#0', stretch=NO, minwidth=0, width=0)
-tree.pack()
+tree.pack() 
 
 with open("cca_fin.csv") as f:
     reader = csv.DictReader(f, delimiter=',')
     for row in reader:
         event_id = row['event_id']
         event_name = row['event_name']
-        classes = row['classes']
+        semester = row['semester']
         max_no_stud = row['max_no_stud']
         ind_grp = row['ind/grp']
         date = row['date']
@@ -50,7 +50,7 @@ with open("cca_fin.csv") as f:
         a2nd = row['2nd']
         a3rd = row['3rd']
         a4th = row['4th']
-        tree.insert("", 0, values=(event_id,event_name,classes,max_no_stud,ind_grp,date,a1st,a2nd,a3rd,a4th))
+        tree.insert("", 0, values=(event_id,event_name,semester,max_no_stud,ind_grp,date,a1st,a2nd,a3rd,a4th))
 
 #============================INITIALIZATION==============================
 if __name__ == '__main__':

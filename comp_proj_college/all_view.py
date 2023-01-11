@@ -7,7 +7,7 @@ view_all.title("view all events")
 width = 500
 height = 400
 screen_width = view_all.winfo_screenwidth()
-screen_height = view_all.winfo_screenheight()
+screen_height = view_all.winfo_screenheight() 
 x = (screen_width/2) - (width/2)
 y = (screen_height/2) - (height/2)
 view_all.geometry("%dx%d+%d+%d" % (width, height, x, y))

@@ -232,7 +232,7 @@ def stud_apply():
     elif stud_class not in cca_class:
         lbl_result3.config(text="Your class has not been assigned this event.", fg="orange")
     elif mstud>=int(cca_mstud):
-        lbl_result3.config(text="registeration for th event has been closed.", fg="orange")
+        lbl_result3.config(text="registeration for the event has been closed.", fg="orange")
     elif user_name in lstud:
         lbl_result3.config(text="you have already registered for the event.", fg="orange")
     else:
