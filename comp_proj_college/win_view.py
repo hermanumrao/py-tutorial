@@ -1,57 +1,43 @@
 from tkinter import *
-import tkinter.ttk as ttk
 import csv
 
-view_all = Tk()
-view_all.title("view all events")
-width = 500
-height = 400
-screen_width = view_all.winfo_screenwidth()
-screen_height = view_all.winfo_screenheight()
-x = (screen_width/2) - (width/2)
-y = (screen_height/2) - (height/2)
-view_all.geometry("%dx%d+%d+%d" % (width, height, x, y))
-view_all.resizable(0, 0)
+global passScreen
 
+# Create and set the GUI for the passScreen of the Password Manager.
+passScreen = Tk()
+passScreen.geometry("1900x800")
+passScreen.resizable(width=True, height=True)
+passScreen.title("Password")
 
-TableMargin = Frame(view_all, width=500)
-TableMargin.pack(side=TOP)
-scrollbarx = Scrollbar(TableMargin, orient=HORIZONTAL)
-scrollbary = Scrollbar(TableMargin, orient=VERTICAL)
-tree = ttk.Treeview(TableMargin, columns=("event_id","event_name","semester","max_no_stud","ind_grp","date","a1st","a2nd","a3rd","a3rd"), height=400, selectmode="extended", yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
-scrollbary.config(command=tree.yview)
-scrollbary.pack(side=RIGHT, fill=Y)
-scrollbarx.config(command=tree.xview)
-scrollbarx.pack(side=BOTTOM, fill=X)
-tree.heading('event_id', text="event_id", anchor=W)
-tree.heading('event_name', text="event_name", anchor=W)
-tree.heading('semester', text="semester", anchor=W)
-tree.heading('max_no_stud', text="max_no_stud", anchor=W)
-tree.heading('ind_grp', text="ind/grp", anchor=W)
-tree.heading('date', text="date", anchor=W)
-tree.heading('a1st', text="1st", anchor=W)
-tree.heading('a2nd', text="2nd", anchor=W)
-tree.heading('a3rd', text="3rd", anchor=W)
-tree.heading('a3rd', text="4th", anchor=W)
+Label(passScreen, text="EventID").grid(row=3, column=1, padx=10)
+Label(passScreen, text="Name").grid(row=3, column=2, padx=40)
+Label(passScreen, text="Semesters participating").grid(row=3, column=3, padx=20)
+Label(passScreen, text="individual/group").grid(row=3, column=4, padx=40)
+Label(passScreen, text="Date&time(hr/mn/dd/mm/yyyy)").grid(row=3, column=5, padx=40)
+Label(passScreen, text="1st place").grid(row=3, column=6, padx=40)
+Label(passScreen, text="2nd place").grid(row=3, column=7, padx=40)
+Label(passScreen, text="3rd place").grid(row=3, column=8, padx=40)
+Label(passScreen, text="4th place").grid(row=3, column=9, padx=40)
 
-tree.column('#0', stretch=NO, minwidth=0, width=0)
-tree.pack() 
+passfile = open("cca_fin.csv", "r")
+read = csv.reader(passfile)
+data = list(read)
 
-with open("cca_fin.csv") as f:
-    reader = csv.DictReader(f, delimiter=',')
-    for row in reader:
-        event_id = row['event_id']
-        event_name = row['event_name']
-        semester = row['semester']
-        max_no_stud = row['max_no_stud']
-        ind_grp = row['ind/grp']
-        date = row['date']
-        a1st = row['1st']
-        a2nd = row['2nd']
-        a3rd = row['3rd']
-        a4th = row['4th']
-        tree.insert("", 0, values=(event_id,event_name,semester,max_no_stud,ind_grp,date,a1st,a2nd,a3rd,a4th))
+entrieslist = []
 
-#============================INITIALIZATION==============================
-if __name__ == '__main__':
-    view_all.mainloop()
+i = 4
+for entries in list(range(0, len(data))):
+    entrieslist.append(data[entries][0])
+
+    Label(passScreen, text=data[entries][0]).grid(row=i, column=1)
+    Label(passScreen, text=data[entries][1]).grid(row=i, column=2)
+    Label(passScreen, text=data[entries][2]).grid(row=i, column=3)
+    Label(passScreen, text=data[entries][4]).grid(row=i, column=4)
+    Label(passScreen, text=data[entries][5]).grid(row=i, column=5)
+    Label(passScreen, text=data[entries][6]).grid(row=i, column=6)
+    Label(passScreen, text=data[entries][7]).grid(row=i, column=7)
+    Label(passScreen, text=data[entries][8]).grid(row=i, column=8)
+    Label(passScreen, text=data[entries][9]).grid(row=i, column=9)
+    i=i+1
+
+passScreen.mainloop()

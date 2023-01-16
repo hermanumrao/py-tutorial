@@ -1,48 +1,37 @@
 from tkinter import *
-import tkinter.ttk as ttk
 import csv
 
-view_all = Tk()
-view_all.title("view all events")
-width = 500
-height = 400
-screen_width = view_all.winfo_screenwidth()
-screen_height = view_all.winfo_screenheight() 
-x = (screen_width/2) - (width/2)
-y = (screen_height/2) - (height/2)
-view_all.geometry("%dx%d+%d+%d" % (width, height, x, y))
-view_all.resizable(0, 0)
+global passScreen
 
+# Create and set the GUI for the passScreen of the Password Manager.
+passScreen = Tk()
+passScreen.geometry("1900x800")
+passScreen.resizable(width=True, height=True)
+passScreen.title("Password")
 
-TableMargin = Frame(view_all, width=500)
-TableMargin.pack(side=TOP)
-scrollbarx = Scrollbar(TableMargin, orient=HORIZONTAL)
-scrollbary = Scrollbar(TableMargin, orient=VERTICAL)
-tree = ttk.Treeview(TableMargin, columns=("event_id","event_name","classes","max_no_stud","ind_grp","date"), height=400, selectmode="extended", yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
-scrollbary.config(command=tree.yview)
-scrollbary.pack(side=RIGHT, fill=Y)
-scrollbarx.config(command=tree.xview)
-scrollbarx.pack(side=BOTTOM, fill=X)
-tree.heading('event_id', text="event_id", anchor=W)
-tree.heading('event_name', text="event_name", anchor=W)
-tree.heading('classes', text="classes", anchor=W)
-tree.heading('max_no_stud', text="max_no_stud", anchor=W)
-tree.heading('ind_grp', text="ind/grp", anchor=W)
-tree.heading('date', text="date", anchor=W)
-tree.column('#0', stretch=NO, minwidth=0, width=0)
-tree.pack()
+Label(passScreen, text="EventID").grid(row=3, column=1, padx=10)
+Label(passScreen, text="event_name").grid(row=3, column=2, padx=40)
+Label(passScreen, text="Semesters participating").grid(row=3, column=3, padx=20)
+Label(passScreen, text="max_no_stud").grid(row=3, column=4, padx=40)
+Label(passScreen, text="individual/group").grid(row=3, column=5, padx=40)
+Label(passScreen, text="Date&time(hr/mn/dd/mm/yyyy)").grid(row=3, column=6, padx=40)
 
-with open(".cca_list.csv") as f:
-    reader = csv.DictReader(f, delimiter=',')
-    for row in reader:
-        event_id = row['event_id']
-        event_name = row['event_name']
-        classes = row['classes']
-        max_no_stud = row['max_no_stud']
-        ind_grp = row['ind/grp']
-        date = row['date']
-        tree.insert("", 0, values=(event_id,event_name,classes,max_no_stud,ind_grp,date))
+passfile = open(".cca_list.csv", "r")
+read = csv.reader(passfile)
+data = list(read)
 
-#============================INITIALIZATION==============================
-if __name__ == '__main__':
-    view_all.mainloop()
+entrieslist = []
+
+i = 4
+for entries in list(range(0, len(data))):
+    entrieslist.append(data[entries][0])
+
+    Label(passScreen, text=data[entries][0]).grid(row=i, column=1)
+    Label(passScreen, text=data[entries][1]).grid(row=i, column=2)
+    Label(passScreen, text=data[entries][2]).grid(row=i, column=3)
+    Label(passScreen, text=data[entries][3]).grid(row=i, column=4)
+    Label(passScreen, text=data[entries][4]).grid(row=i, column=5)
+    Label(passScreen, text=data[entries][5]).grid(row=i, column=6)
+    i=i+1
+
+passScreen.mainloop()

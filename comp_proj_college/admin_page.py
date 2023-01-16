@@ -128,7 +128,7 @@ def Create():
     btn_submit.grid(row=8, columnspan=2, pady=20)
 
 def Delete():
-    global lbl_del1,DELID
+    global lbl_del1,DELID,DeleteFrame
     DeleteFrame= Frame(admin)
     DeleteFrame.pack(side=TOP, pady=80)
     print("Delete existing event  has been selected")
@@ -143,7 +143,7 @@ def Delete():
     lbl_del1.grid(row=3, columnspan=2)
 
 def winner():
-    global wwin,w1,w2,w3,w4
+    global wwin,w1,w2,w3,w4,WinFrame
     EditFrame.destroy()
     WinFrame= Frame(admin)
     WinFrame.pack(side=TOP, pady=80)
@@ -207,6 +207,8 @@ def crt_submit():
     else:
         print("creation Successful")
         write_file(CRTNAME.get(),class_list,CRTSTU.get(),var.get(),CRTDATE.get())
+        CreateFrame.destroy()
+        edit_page()
 
 def write_file(b,c,d,e,f):
     file=open(".cca_list.csv",'a')
@@ -240,6 +242,8 @@ def del_file():
     for i in read_obj:
         if i[0]==rno:
             print("rec found and Deleted")
+            DeleteFrame.destroy()
+            edit_page()
         else:
             print(i)
             csv_obj.writerow(i)
@@ -257,6 +261,8 @@ def fin_file():
         print(i,winners)
         if i[0]==winners[0]:
             print("rec found and updated")
+            WinFrame.destroy()
+            edit_page()
             csv_obj.writerow(i+winners[1::])
         else:
             print("_")
