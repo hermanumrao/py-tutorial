@@ -87,7 +87,7 @@ def Create():
     CreateFrame.pack(side=TOP, pady=80)
     lbl_crtname = Label(CreateFrame, text="activity name:", font=('arial', 25), bd=18)
     lbl_crtname.grid(row=1)
-    lbl_crtclass = Label(CreateFrame, text="classes participating:", font=('arial', 25), bd=18)
+    lbl_crtclass = Label(CreateFrame, text="Semesters participating:", font=('arial', 25), bd=18)
     lbl_crtclass.grid(row=2)
     lbl_crtcnt = Label(CreateFrame, text="max number of students:", font=('arial', 25), bd=18)
     lbl_crtcnt.grid(row=4)
