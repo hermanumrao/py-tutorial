@@ -8,7 +8,7 @@ def teach():
 	start.destroy()
 	import teach_login
 start = Tk()
-start.title("CCA HAL Public School")
+start.title("PES UNIVERSITY Clubs & Activities")
 width = 840
 height = 650
 screen_width = start.winfo_screenwidth()
